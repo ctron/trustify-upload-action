@@ -10,6 +10,19 @@ The URL of the target upload API.
 
 A list of files or directories to process. Each path on a new line.
 
+### `issuerUrl` (optional)
+
+The URL to the OIDC issuer. This can be used in combination with `clientId` and `clientSecret` to acquire an OIDC
+token which will then be used for authenticating during the upload process.
+
+### `clientId` (optional)
+
+The ID of the OIDC client.
+
+### `clientId` (optional)
+
+The secret of the OIDC client.
+
 ## Example usage
 
 ```yaml
