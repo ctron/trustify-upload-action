@@ -24,19 +24,21 @@ runs:
       if: runner.os == 'Linux'
       shell: bash
       run: |
-        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.9/sbom-x86_64-unknown-linux-gnu -o ${RUNNER_TOOL_CACHE}/sbom
+        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.10/sbom-x86_64-unknown-linux-gnu -o ${GITHUB_WORKSPACE}/sbom
+        chmod a+x ${GITHUB_WORKSPACE}/sbom
 
     - name: Download
       if: runner.os == 'macOS'
       shell: bash
       run: |
-        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.9/sbom-x86_64-apple-darwin -o ${RUNNER_TOOL_CACHE}/sbom
+        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.10/sbom-x86_64-apple-darwin -o ${GITHUB_WORKSPACE}/sbom
+        chmod a+x ${GITHUB_WORKSPACE}/sbom 
 
     - name: Download
       if: runner.os == 'Windows'
       shell: bash
       run: |
-        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.9/sbom-x86_64-pc-windows-msvc.exe  -o ${RUNNER_TOOL_CACHE}/sbom.exe
+        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.10/sbom-x86_64-pc-windows-msvc.exe  -o ${GITHUB_WORKSPACE}/sbom.exe
 
     - name: Run
       shell: bash
