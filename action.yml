@@ -18,12 +18,33 @@ inputs:
     required: false
 
 runs:
-  using: "docker"
-  image: Dockerfile
-  args:
-    - ${{ inputs.target }}
-    - ${{ inputs.files }}
-  env:
-    OIDC_ISSUER_URL: ${{ inputs.issuerUrl }}
-    OIDC_CLIENT_ID: ${{ inputs.clientId }}
-    OIDC_CLIENT_SECRET: ${{ inputs.clientSecret }}
+  using: "composite"
+  steps:
+    - name: Download
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.9/sbom-x86_64-unknown-linux-gnu -o ${RUNNER_TOOL_CACHE}/sbom
+
+    - name: Download
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.9/sbom-x86_64-apple-darwin -o ${RUNNER_TOOL_CACHE}/sbom
+
+    - name: Download
+      if: runner.os == 'Windows'
+      shell: bash
+      run: |
+        curl -sSL https://github.com/ctron/csaf-walker/releases/download/v0.8.9/sbom-x86_64-pc-windows-msvc.exe  -o ${RUNNER_TOOL_CACHE}/sbom.exe
+
+    - name: Run
+      shell: bash
+      env:
+        TARGET: ${{ inputs.target }}
+        FILES: ${{ inputs.files }}
+        OIDC_ISSUER_URL: ${{ inputs.issuerUrl }}
+        OIDC_CLIENT_ID: ${{ inputs.clientId }}
+        OIDC_CLIENT_SECRET: ${{ inputs.clientSecret }}
+      run: |
+        action.sh "$TARGET" "$FILES" 

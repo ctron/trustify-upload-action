@@ -1,4 +1,6 @@
-#!/usr/bin/bash -l
+#!/usr/bin/bash
+
+set -e
 
 target="$1"
 shift
