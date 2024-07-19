@@ -47,4 +47,4 @@ runs:
         OIDC_CLIENT_ID: ${{ inputs.clientId }}
         OIDC_CLIENT_SECRET: ${{ inputs.clientSecret }}
       run: |
-        action.sh "$TARGET" "$FILES" 
+        "${{ github.action_path }}/action.sh" "$TARGET" "$FILES" 
