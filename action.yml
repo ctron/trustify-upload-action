@@ -16,6 +16,9 @@ inputs:
   clientSecret:
     description: A secret for the OIDC client
     required: false
+  queryParameters:
+    description: A comma seperated list of `key=value` to set as additional query parameters
+    required: false
 
 runs:
   using: "composite"
@@ -48,5 +51,6 @@ runs:
         OIDC_ISSUER_URL: ${{ inputs.issuerUrl }}
         OIDC_CLIENT_ID: ${{ inputs.clientId }}
         OIDC_CLIENT_SECRET: ${{ inputs.clientSecret }}
+        SENDER_QUERY_PARAMETER: ${{ inputs.queryParameters }}
       run: |
         "${{ github.action_path }}/action.sh" "$TARGET" "$FILES" 
