@@ -1,0 +1,29 @@
+name: "Trustify SBOM Upload"
+description: "Upload an SBOM to a Trustify instance"
+inputs:
+  target:
+    description: The target API to send to
+    required: true
+  files:
+    description: The SBOM files to upload
+    required: true
+  issuerUrl:
+    description: An OIDC issuer URL for acquiring a bearer token
+    required: false
+  clientId:
+    description: An OIDC client ID
+    required: false
+  clientSecret:
+    description: A secret for the OIDC client
+    required: false
+
+runs:
+  using: "docker"
+  image: Containerfile
+  args:
+    - ${{ inputs.target }}
+    - ${{ inputs.files }}
+  env:
+    OIDC_ISSUER_URL: ${{ inputs.issuerUrl }}
+    OIDC_CLIENT_ID: ${{ inputs.clientId }}
+    OIDC_CLIENT_SECRET: ${{ inputs.clientSecret }}
