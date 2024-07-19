@@ -19,7 +19,7 @@ token which will then be used for authenticating during the upload process.
 
 The ID of the OIDC client.
 
-### `clientId` (optional)
+### `clientSecret` (optional)
 
 The secret of the OIDC client.
 
