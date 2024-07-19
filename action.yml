@@ -19,7 +19,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: Containerfile
+  image: Dockerfile
   args:
     - ${{ inputs.target }}
     - ${{ inputs.files }}
