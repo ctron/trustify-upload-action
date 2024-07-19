@@ -26,7 +26,7 @@ The secret of the OIDC client.
 ## Example usage
 
 ```yaml
-uses: ctron/trustify-upload-action@main
+uses: ctron/trustify-upload-action@v1
 with:
   target: https://my.trustify.instance.example.com
   files: |
